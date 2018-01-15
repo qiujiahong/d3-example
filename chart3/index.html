@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .svgBorder {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<svg/>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="data.js"></script>
+
+<script>
+    var height = 500;
+    var width = 600;
+    var padding = 30;
+    var barPadding = 5;
+    var barWidth = (width - 2 * padding) / data.length - barPadding;
+
+    var xScale = d3.scaleLinear().domain([0, data.length - 1]).range([0, width - (barWidth + barPadding)]);
+    var yScale = d3.scaleLinear().domain([0, d3.max(data)]).range([height - 2 * padding, 0]);
+
+    var svg = d3.select("svg")
+        .attr("width", width + "px")
+        .attr("height", height + "px")
+        .classed("svgBorder", true)
+        .style("padding", function () {
+            //return padding +"px";
+            return padding +"px"+" "+padding +"px"+" "+padding +"px"+" "+padding +"px";
+        } );
+
+    g = svg.append("g");
+
+    svg.selectAll("rect")
+        .data(data)
+        .enter().append("rect")
+        .attr("x", function (d, i) {
+            return xScale(i);
+        })
+        .attr("y", function (d) {
+            return yScale(d) + "px";
+        })
+        .attr("width", barWidth + "px")
+        .attr("height", function (d) {
+            return yScale(d3.max(data) - d);
+        })
+        .style("fill", "red");
+
+    //添加横纵坐标
+    var xAxis = d3.axisBottom(xScale).ticks(5)
+        .tickFormat(function (d) {
+            return "第"+d+"天";
+        });
+    g.append("g")
+        .attr("transform", "translate("+(barWidth/2)+"," + (height-2*padding+3) + ")")
+        .call(xAxis);
+
+    var yAxis = d3.axisLeft(yScale);
+    g.append("g")
+        .attr("transform", "translate(0,0)")
+        .call(yAxis);
+
+</script>
+</body>
+</html>
