@@ -1,5 +1,5 @@
-var minYear = birthData[0].year;
-var maxYear = birthData[birthData.length-1].year;
+var minYear = birthData[0].hour;
+var maxYear = birthData[birthData.length-1].hour;
 
 var width = 600;
 var height = 600;
@@ -17,7 +17,7 @@ d3.select("svg")
     .attr("height",height)
     .selectAll("rect")
     .data(birthData.filter(function (d) {
-        return d.year === minYear;
+        return d.hour === minYear;
     }))
     .enter()
     .append("rect")
@@ -39,7 +39,7 @@ d3.select("input")
         var year = +d3.event.target.value;
         d3.selectAll("rect")
             .data(birthData.filter(function (d) {
-                return d.year === year;
+                return d.hour === hour;
             }))
             .attr("height",function (d) {
                 return d.births / 2.5e6 * height;

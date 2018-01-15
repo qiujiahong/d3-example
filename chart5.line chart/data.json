@@ -1,0 +1,50 @@
+[
+  {
+    "hour": "0", "value": 60},
+  {
+    "hour": "1", "value": 30},
+  {
+    "hour": "2", "value": 20},
+  {
+    "hour": "3", "value": 63},
+  {
+    "hour": "4", "value": 63.2},
+  {
+    "hour": "5", "value": 70},
+  {
+    "hour": "6", "value": 10},
+  {
+    "hour": "7", "value": 26},
+  {
+    "hour": "8", "value": 30},
+  {
+    "hour": "9", "value": 10},
+  {
+    "hour": "10", "value": 23},
+  {
+    "hour": "11", "value": 32},
+  {
+    "hour": "12", "value": 25},
+  {
+    "hour": "13", "value": 60},
+  {
+    "hour": "14", "value": 40},
+  {
+    "hour": "15", "value": 55},
+  {
+    "hour": "16", "value": 26},
+  {
+    "hour": "17", "value": 44},
+  {
+    "hour": "18", "value": 36},
+  {
+    "hour": "19", "value": 56},
+  {
+    "hour": "20", "value": 70},
+  {
+    "hour": "21", "value": 80},
+  {
+    "hour": "22", "value": 36},
+  {
+    "hour": "23", "value": 35}
+]
