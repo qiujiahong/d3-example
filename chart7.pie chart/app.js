@@ -21,7 +21,9 @@ var color = d3.scaleOrdinal(["#98abc5",
 
 var pie = d3.pie()
     .sort(null)
-    .value(function(d) { return d.market_cap; });
+    .value(function (d) {
+        return d.market_cap;
+    });
 
 var path = d3.arc()
     .outerRadius(radius - 10)
@@ -44,7 +46,7 @@ csvData += "NEM,2514744000\n";
 csvData += "Dash,2363329943\n";
 csvData += "IOTA,1706859515\n";
 var data = d3.csvParse(csvData);
-data.forEach(function(d) {
+data.forEach(function (d) {
     d.market_cap = +d.market_cap;
     return d;
 });
@@ -55,11 +57,11 @@ var arc = g.selectAll(".arc")
     .attr("class", "arc");
 
 
-
 arc.append("path")
     .attr("d", path)
-    .attr("fill", function(d) { return color(d.data.currency); });
-
+    .attr("fill", function (d) {
+        return color(d.data.currency);
+    });
 
 
 // Now we'll draw our label lines, etc.
@@ -69,26 +71,30 @@ arc.append("path")
 
 arc.append("text")
 
-    .attr("transform", function(d,i){
+    .attr("transform", function (d, i) {
         var pos = outerArc.centroid(d);
         pos[0] = radius * (midAngle(d) < Math.PI ? 1.1 : -1.1);
 
 
-        var percent = (d.endAngle - d.startAngle)/(2*Math.PI)*100
-        if(percent<3){
+        var percent = (d.endAngle - d.startAngle) / (2 * Math.PI) * 100
+        if (percent < 3) {
             //console.log(percent)
-            pos[1] += i*15
+            pos[1] += i * 15
         }
-        return "translate("+ pos +")";
+        return "translate(" + pos + ")";
     })
-    .text(function(d) { return d.data.currency; })
-    .attr("fill", function(d,i) { return color(i); })
+    .text(function (d) {
+        return d.data.currency;
+    })
+    .attr("fill", function (d, i) {
+        return color(i);
+    })
     .attr("text-anchor", 'left')
-    .attr("dx", function(d){
-        var ac = midAngle(d) < Math.PI ? 0:-50
+    .attr("dx", function (d) {
+        var ac = midAngle(d) < Math.PI ? 0 : -50
         return ac
     })
-    .attr("dy", 5 )
+    .attr("dy", 5)
 
 
 function midAngle(d) {
@@ -96,25 +102,27 @@ function midAngle(d) {
 }
 
 var polyline = g.selectAll("polyline")
-    .data(pie(data), function(d) {
+    .data(pie(data), function (d) {
         return d.data.currency;
     })
     .enter()
     .append("polyline")
-    .attr("points", function(d,i) {
+    .attr("points", function (d, i) {
         var pos = outerArc.centroid(d);
         pos[0] = radius * 0.95 * (midAngle(d) < Math.PI ? 1 : -1);
-        var o=   outerArc.centroid(d)
-        var percent = (d.endAngle -d.startAngle)/(2*Math.PI)*100
-        if(percent<3){
+        var o = outerArc.centroid(d)
+        var percent = (d.endAngle - d.startAngle) / (2 * Math.PI) * 100
+        if (percent < 3) {
             //console.log(percent)
             o[1]
-            pos[1] += i*15
+            pos[1] += i * 15
         }
         //return [label.centroid(d),[o[0],0[1]] , pos];
-        return [label.centroid(d),[o[0],pos[1]] , pos];
+        return [label.centroid(d), [o[0], pos[1]], pos];
     })
     .style("fill", "none")
     //.attr('stroke','grey')
-    .attr("stroke", function(d,i) { return color(i); })
+    .attr("stroke", function (d, i) {
+        return color(i);
+    })
     .style("stroke-width", "1px");
