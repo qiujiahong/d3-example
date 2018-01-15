@@ -38,10 +38,18 @@ d3.json("data.json", function (error, data) {
         return d.value;
     }) * 1.005]);
 
+
     g.append("g")
         .attr("class", "axis axis--x")
         .attr("transform", "translate(0," + height + ")")
-        .call(d3.axisBottom(x));
+        .call(d3.axisBottom(x))
+        .append("text")
+        .attr("class", "axis-title")
+        .attr("transform", "rotate(0)")
+        .attr("x", width-30)
+        .attr("y", -10)
+        .attr("fill", "#5D6971")
+        .text("时间(小时)");
 
     g.append("g")
         .attr("class", "axis axis--y")
@@ -67,6 +75,7 @@ d3.json("data.json", function (error, data) {
         .attr("class", "focus")
         .style("display", "none");
 
+    //选中点显示数值
     focus.append("line")
         .attr("class", "x-hover-line hover-line")
         .attr("y1", 0)

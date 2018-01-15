@@ -1,6 +1,6 @@
 [
   {
-    "hour": "0", "value": 40},
+    "hour": "0", "value": 10},
   {
     "hour": "1", "value": 40},
   {
@@ -32,7 +32,7 @@
   {
     "hour": "15", "value": 55},
   {
-    "hour": "16", "value": 26},
+    "hour": "16", "value": 100},
   {
     "hour": "17", "value": 44},
   {
