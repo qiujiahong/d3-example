@@ -41,11 +41,21 @@ function  makeGraph(year) {
 
     var arcs = d3.pie()
         .value(d => d.births)
+        // .sort(function (a,b) {
+        //     if(a.continent < b.continent)
+        //         return -1;
+        //     else if(a.continent > b.continent)
+        //         return 1;
+        //     else
+        //         return a.births - b.births;
+        // })
         (yearData);
 
     var path = d3.arc()
         .outerRadius(width/2-10)
         .innerRadius(width/4);
+        // .padAngle(0.02)
+        // .cornerRadius(20);
 
     var update = d3.select('.chart')
         .selectAll('.arc')
